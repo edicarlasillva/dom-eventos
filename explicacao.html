@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .element {
+      padding: 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .highlighted {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>
+    Contador
+    <span id="counter">0</span>
+  </h1>
+
+  <button id="btn-increment-counter">
+    Clique para aumentar
+  </button>
+
+  <button id="myButton">Click me!</button>
+
+  <div class="element">Passe o mouse por cima!</div>
+
+  <label for="input">Digite uma palavra</label>
+  <input type="text" id="input">
+
+  <div id="feedback"></div>
+
+  <script>
+
+    // Click Event -> Contador
+    let counter = 0
+    const elementCount = document.getElementById('counter')
+    const buttonElement = document.getElementById('btn-increment-counter')
+
+    function incrementCounter() {
+      counter++
+      elementCount.textContent = counter
+    }
+
+    buttonElement.addEventListener('click', incrementCounter)
+
+    // Click Event Param
+    const myButton = document.getElementById('myButton')
+
+    function handleClick(event) {
+      console.log('Evento de clique ocorreu!')
+      console.log('Tipo do evento: ', event.type)
+      console.log('Coordenadas do clique: ', event.clientX, event.clientY)
+    }
+
+    myButton.addEventListener('click', handleClick)
+
+    // MouseOver and MouseOut Event
+    const element = document.querySelector('.element')
+
+    function highlighted() {
+      element.classList.add('highlighted')
+    }
+
+    function unHighlighted() {
+      element.classList.remove('highlighted')
+    }
+
+    element.addEventListener('mouseover', highlighted)
+    element.addEventListener('mouseout', unHighlighted)
+
+    // KeyUp and KeyDown Event
+    const inputElement = document.getElementById('input')
+    const feedbackElement = document.getElementById('feedback')
+
+    inputElement.addEventListener('keydown', (event) => {
+      feedbackElement.textContent = `Tecla pressionada: ${event.key}`
+    })
+
+    inputElement.addEventListener('keyup', () => {
+      feedbackElement.textContent = 'Soltou a tecla!'
+    })
+
+  </script>
+</body>
+
+</html>
